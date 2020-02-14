@@ -18,7 +18,7 @@ const Signup = () => {
   };
 
   const signup = user => {
-    // console.log(name, email, password);
+    console.log(name, email, password);
     fetch(`${API}/signup`, {
       method: "POST",
       headers: {
@@ -37,7 +37,7 @@ const Signup = () => {
 
   const clickSubmit = event => {
     event.preventDefault();
-    signup(name, email, password);
+    signup({ name, email, password });
   };
 
   const signUpForm = () => (
