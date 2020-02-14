@@ -18,7 +18,7 @@ const Menu = ({ history }) => (
           Home
         </Link>
       </li>
-
+      {/* 
       <li className="nav-item">
         <Link
           className="nav-link"
@@ -27,7 +27,7 @@ const Menu = ({ history }) => (
         >
           Dashboard
         </Link>
-      </li>
+      </li> */}
 
       {isAuthenticated() && isAuthenticated().user.role === 0 && (
         <li className="nav-item">
