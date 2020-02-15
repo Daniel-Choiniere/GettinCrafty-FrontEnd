@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
+import { createCategory } from "./apiAdmin";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
@@ -12,15 +13,22 @@ const AddCategory = () => {
 
   const handleChange = e => {
     setError("");
-    setName(e.tatget.value);
+    setName(e.target.value);
   };
 
   const clickSubmit = e => {
     e.preventDefault();
     setError("");
     setSuccess(false);
-
     //   make request to api to create category
+    createCategory(user._id, token, { name }).then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError("");
+        setSuccess(true);
+      }
+    });
   };
 
   const newCategoryForm = () => (
