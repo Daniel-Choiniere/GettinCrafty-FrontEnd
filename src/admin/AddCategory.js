@@ -14,6 +14,7 @@ const AddCategory = () => {
   const handleChange = e => {
     setError("");
     setName(e.target.value);
+    setSuccess(false);
   };
 
   const clickSubmit = e => {
@@ -41,19 +42,38 @@ const AddCategory = () => {
           onChange={handleChange}
           value={name}
           autoFocus
+          required
         />
         <button className="btn btn-outline-primary">Create Category</button>
       </div>
     </form>
   );
 
+  const showSuccess = () => {
+    if (success) {
+      return <h3 className="text-success">{name} category has been created</h3>;
+    }
+  };
+
+  const showError = () => {
+    if (error) {
+      return (
+        <h3 className="text-danger">That category is already available</h3>
+      );
+    }
+  };
+
   return (
     <Layout
-      title="Add a new category"
-      description={`Remember to smile ${name}!`}
+      title="Add a new product category"
+      description={`Remember to smile ${user.name}!`}
     >
       <div className="row">
-        <div className="col-md-8 offset-md-2">{newCategoryForm()}</div>
+        <div className="col-md-8 offset-md-2">
+          {showSuccess()}
+          {showError()}
+          {newCategoryForm()}
+        </div>
       </div>
     </Layout>
   );
