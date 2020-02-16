@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { createCategory } from "./apiAdmin";
+import { Link } from "react-router-dom";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
@@ -63,6 +64,14 @@ const AddCategory = () => {
     }
   };
 
+  const goBack = () => (
+    <div className="mt-5">
+      <Link to="/admin/dashboard" className="text-info">
+        Back to the Dashboard
+      </Link>
+    </div>
+  );
+
   return (
     <Layout
       title="Add a new product category"
@@ -73,6 +82,7 @@ const AddCategory = () => {
           {showSuccess()}
           {showError()}
           {newCategoryForm()}
+          {goBack()}
         </div>
       </div>
     </Layout>
