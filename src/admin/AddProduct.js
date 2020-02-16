@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-// import { createProduct } from "./apiAdmin";
+import { createProduct } from "./apiAdmin";
 // import { Link } from "react-router-dom";
 
 const AddProduct = () => {
-  const { user, token } = isAuthenticated();
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -22,23 +21,25 @@ const AddProduct = () => {
     formData: ""
   });
 
+  const { user, token } = isAuthenticated();
   const {
     name,
     description,
     price,
-    catagories,
-    category,
-    shipping,
+    // catagories,
+    // category,
+    // shipping,
     quantity,
-    loading,
-    error,
-    createdProduct,
-    redirectToProfile,
+    // loading,
+    // error,
+    // createdProduct,
+    // redirectToProfile,
     formData
   } = values;
 
   useEffect(() => {
     setValues({ ...values, formData: new FormData() });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = name => event => {
@@ -49,7 +50,27 @@ const AddProduct = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const clickSubmit = e => {};
+  const clickSubmit = e => {
+    e.preventDefault();
+    setValues({ ...values, error: "", loading: true });
+
+    createProduct(user._id, token, formData).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          description: "",
+          photo: "",
+          price: "",
+          quantitiy: "",
+          loading: false,
+          createdProduct: data.name
+        });
+      }
+    });
+  };
 
   const newProductForm = () => (
     <form className="mb-3" onSubmit={clickSubmit}>
@@ -98,6 +119,7 @@ const AddProduct = () => {
         <label className="text-muted">Category</label>
         <select onChange={handleChange("category")} className="form-control">
           <option value="5e3f3a813f472d09854d675b">T-Shirts</option>
+          <option value="5e3f3a813f472d09854d675b">Mugs</option>
         </select>
       </div>
 
@@ -115,7 +137,7 @@ const AddProduct = () => {
           onChange={handleChange("quantity")}
           type="number"
           className="form-control"
-          value={quantity}
+          value={quantity || 0}
         />
       </div>
 

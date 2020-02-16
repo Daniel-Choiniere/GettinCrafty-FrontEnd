@@ -25,7 +25,7 @@ export const createProduct = (userId, token, product) => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify(product)
+    body: product
   })
     .then(response => {
       return response.json();
