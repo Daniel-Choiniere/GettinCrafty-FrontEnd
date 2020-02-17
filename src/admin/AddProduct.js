@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { createProduct } from "./apiAdmin";
+import { createProduct, createCategory, getCatagories } from "./apiAdmin";
 // import { Link } from "react-router-dom";
 
 const AddProduct = () => {
@@ -37,8 +37,22 @@ const AddProduct = () => {
     formData
   } = values;
 
+  const createCategoryDropdown = () => {
+    getCatagories().then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          catagories: data,
+          formData: new FormData()
+        });
+      }
+    });
+  };
+
   useEffect(() => {
-    setValues({ ...values, formData: new FormData() });
+    createCategoryDropdown();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
