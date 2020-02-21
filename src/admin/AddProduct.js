@@ -30,9 +30,9 @@ const AddProduct = () => {
     // category,
     // shipping,
     quantity,
-    // loading,
-    // error,
-    // createdProduct,
+    loading,
+    error,
+    createdProduct,
     // redirectToProfile,
     formData
   } = values;
@@ -165,13 +165,45 @@ const AddProduct = () => {
     </form>
   );
 
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      // if we have an error we run showError, otherwise we dont
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-info"
+      // if we have a created product we run showSuccess, otherwise we dont
+      style={{ display: createdProduct ? "" : "none" }}
+    >
+      <h2>Yayyy {`${createdProduct}`} has been created.</h2>
+    </div>
+  );
+
+  const showLoading = () =>
+    loading && (
+      <div className="alert alert-success">
+        <h2>Have a drink and stay hydrated!</h2>
+      </div>
+    );
+
   return (
     <Layout
       title="Add a new product"
       description={`Remember to smile ${user.name}!`}
     >
       <div className="row">
-        <div className="col-md-8 offset-md-2">{newProductForm()}</div>
+        <div className="col-md-8 offset-md-2">
+          {showError()}
+          {showLoading()}
+          {showSuccess()}
+          {newProductForm()}
+        </div>
       </div>
     </Layout>
   );
