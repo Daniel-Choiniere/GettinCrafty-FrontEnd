@@ -33,7 +33,7 @@ const Shop = () => {
 
     if (filterBy === "price") {
       let priceValues = handlePrice(filters);
-      newFilters.filter[filterBy] = priceValues;
+      newFilters.filters[filterBy] = priceValues;
     }
     loadFilteredResults(myFilters.filters);
     setMyFilters(newFilters);
