@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Checkbox = ({ catagories }) => {
+const Checkbox = ({ catagories, handleFilters }) => {
   const [checked, setChecked] = useState([]);
 
   const handleToggle = c => () => {
@@ -12,8 +12,9 @@ const Checkbox = ({ catagories }) => {
     } else {
       newCheckedCategoryId.splice(currentChecked, 1);
     }
-    console.log(newCheckedCategoryId);
+    // console.log(newCheckedCategoryId);
     setChecked(newCheckedCategoryId);
+    handleFilters(newCheckedCategoryId);
   };
 
   return catagories.map((c, i) => (
