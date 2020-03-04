@@ -25,7 +25,7 @@ const Shop = () => {
 
   useEffect(() => {
     init();
-  });
+  }, []);
 
   const handleFilters = (filters, filterBy) => {
     const newFilters = { ...myFilters };
@@ -35,7 +35,7 @@ const Shop = () => {
       let priceValues = handlePrice(filters);
       newFilters.filter[filterBy] = priceValues;
     }
-
+    loadFilteredResults(myFilters.filters);
     setMyFilters(newFilters);
   };
 
@@ -49,6 +49,10 @@ const Shop = () => {
       }
     }
     return array;
+  };
+
+  const loadFilteredResults = newFilters => {
+    console.log(newFilters);
   };
 
   return (
@@ -68,12 +72,11 @@ const Shop = () => {
           </ul>
 
           <h4>Filter By Price Range</h4>
-          <ul>
-            <RadioBox
-              prices={prices}
-              handleFilters={filters => handleFilters(filters, "price")}
-            />
-          </ul>
+
+          <RadioBox
+            prices={prices}
+            handleFilters={filters => handleFilters(filters, "price")}
+          />
         </div>
 
         <div className="col-8">{JSON.stringify(myFilters)}</div>
