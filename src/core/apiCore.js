@@ -12,7 +12,7 @@ export const getProducts = sortBy => {
     });
 };
 
-export const getCatagories = () => {
+export const getCategories = () => {
   return fetch(`${API}/categories`, {
     method: "GET"
   })

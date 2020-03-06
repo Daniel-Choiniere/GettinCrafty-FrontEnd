@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import Card from "./Card";
-import { getCatagories, getFilteredProducts } from "./apiCore";
+import { getCategories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
@@ -10,7 +10,7 @@ const Shop = () => {
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [] }
   });
-  const [catagories, setCatagories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
@@ -18,11 +18,11 @@ const Shop = () => {
   const [filteredResults, setFilteredResults] = useState([]);
 
   const init = () => {
-    getCatagories().then(data => {
+    getCategories().then(data => {
       if (data.error) {
         setError(data.error);
       } else {
-        setCatagories(data);
+        setCategories(data);
       }
     });
   };
@@ -102,10 +102,10 @@ const Shop = () => {
     >
       <div className="row">
         <div className="col-4">
-          <h4>Filter By Catagories</h4>
+          <h4>Filter By Categories</h4>
           <ul>
             <Checkbox
-              catagories={catagories}
+              catagories={categories}
               handleFilters={filters => handleFilters(filters, "category")}
             />
           </ul>
