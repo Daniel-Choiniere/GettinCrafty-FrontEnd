@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
-// import Card from "./Card";
+import Card from "./Card";
 import { getCatagories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
@@ -14,9 +14,7 @@ const Shop = () => {
   const [error, setError] = useState(false);
   const [limit, setLimit] = useState(8);
   const [skip, setSkip] = useState(0);
-  const [filteredResults, setFilteredResults] = useState(
-    "Filter Results will show up here"
-  );
+  const [filteredResults, setFilteredResults] = useState([]);
 
   const init = () => {
     getCatagories().then(data => {
@@ -30,6 +28,7 @@ const Shop = () => {
 
   useEffect(() => {
     init();
+    loadFilteredResults(skip, limit, myFilters.filter);
   }, []);
 
   const loadFilteredResults = newFilters => {
@@ -38,7 +37,7 @@ const Shop = () => {
       if (data.error) {
         setError(data.error);
       } else {
-        setFilteredResults(data);
+        setFilteredResults(data.data);
       }
     });
   };
@@ -91,7 +90,14 @@ const Shop = () => {
           />
         </div>
 
-        <div className="col-8">{JSON.stringify(filteredResults)}</div>
+        <div className="col-8">
+          <h2 className="mb-4">Products</h2>
+          <div className="row">
+            {filteredResults.map((product, i) => (
+              <Card key={i} product={product} />
+            ))}
+          </div>
+        </div>
       </div>
     </Layout>
   );
