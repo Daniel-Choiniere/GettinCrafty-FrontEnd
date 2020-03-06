@@ -12,10 +12,7 @@ const Search = () => {
     searched: false
   });
 
-  const {
-    categories
-    //  category, search, results, searched
-  } = data;
+  const { categories, category, search, results, searched } = data;
 
   const loadCatagories = () => {
     getCategories().then(data => {
@@ -31,9 +28,18 @@ const Search = () => {
     loadCatagories();
   }, []);
 
-  const searchSubmit = () => {};
+  const searchData = () => {
+    console.log(search, category);
+  };
 
-  const handleChange = () => {};
+  const searchSubmit = e => {
+    e.preventDefault();
+    searchData();
+  };
+
+  const handleChange = name => event => {
+    setData({ ...data, [name]: event.target.value, searched: false });
+  };
 
   const searchForm = () => (
     <form onSubmit={searchSubmit}>
@@ -42,7 +48,6 @@ const Search = () => {
           <div className="input-group-prepend">
             <select className="btn mr-2" onChange={handleChange("category")}>
               <option value="All">Pick Category</option>
-              {/* MAP THROUGH CATEGORIES */}
               {categories.map((c, i) => (
                 <option key={i} value={c._id}>
                   {c.name}
