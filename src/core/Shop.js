@@ -11,8 +11,8 @@ const Shop = () => {
     filters: { category: [], price: [] }
   });
   const [categories, setCategories] = useState([]);
-  const [error, setError] = useState(false);
-  const [limit, setLimit] = useState(6);
+  const [setError] = useState(false);
+  const [limit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
@@ -30,6 +30,7 @@ const Shop = () => {
   useEffect(() => {
     init();
     loadFilteredResults(skip, limit, myFilters.filter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadFilteredResults = newFilters => {
@@ -47,7 +48,6 @@ const Shop = () => {
 
   const loadMore = () => {
     let skipAmount = skip + limit;
-    // console.log(newFilters);
     getFilteredProducts(skipAmount, limit, myFilters.filters).then(data => {
       if (data.error) {
         setError(data.error);
