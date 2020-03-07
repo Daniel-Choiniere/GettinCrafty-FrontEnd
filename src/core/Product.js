@@ -24,12 +24,13 @@ const Product = props => {
 
   return (
     <Layout
-      title="Welcome to Gettin Crafty"
-      description="Fun, customizable clothing and gifts!"
+      title={product && product.name}
+      description={product && product.description}
       className="container-fluid"
     >
-      <h2>Product Page</h2>
-      <div className="row">{JSON.stringify(product)}</div>
+      <div className="row">
+        {product && product.description && <Card product={product} />}
+      </div>
     </Layout>
   );
 };
