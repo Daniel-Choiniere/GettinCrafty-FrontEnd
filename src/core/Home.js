@@ -7,7 +7,7 @@ import Search from "./Search";
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
   const [productsByArrival, setProductsByArrival] = useState([]);
-  const [error, setError] = useState([false]);
+  const [setError] = useState([false]);
 
   const loadProductsBySell = () => {
     getProducts("sold").then(data => {

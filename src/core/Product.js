@@ -5,7 +5,7 @@ import Card from "./Card";
 
 const Product = props => {
   const [product, setProduct] = useState({});
-  const [error, setError] = useState(false);
+  const [setError] = useState(false);
 
   const loadSingleProduct = productId => {
     read(productId).then(data => {
@@ -20,6 +20,7 @@ const Product = props => {
   useEffect(() => {
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -31,7 +32,9 @@ const Product = props => {
       className="container-fluid"
     >
       <div className="row">
-        {product && product.description && <Card product={product} />}
+        {product && product.description && (
+          <Card product={product} showViewProductButton={false} />
+        )}
       </div>
     </Layout>
   );

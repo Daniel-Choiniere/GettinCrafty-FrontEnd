@@ -2,7 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ShowImage from "./ShowImage";
 
-const Card = ({ product }) => {
+// takes in prop showViewProductButton from Single Product component to not show card buttons
+const Card = ({ product, showViewProductButton = true }) => {
+  const showViewButton = showViewProductButton => {
+    return (
+      showViewProductButton && (
+        <Link to={`/product/${product._id}`} className="mr-2">
+          <button className="btn btn-outline-primary mt-2 mb-2">
+            View Product
+          </button>
+        </Link>
+      )
+    );
+  };
   return (
     <div className="card">
       <div className="card-header">{product.name}</div>
@@ -10,13 +22,9 @@ const Card = ({ product }) => {
         <ShowImage item={product} url="product" />
         <p>{product.description.substring(0, 100)}</p>
         <p>${product.price}</p>
-        <Link to={`/product/${product._id}`}>
-          <button className="btn btn-outline-primary mt-2 mb-2 mr-2">
-            View Product
-          </button>
-        </Link>
-        <button className="btn btn-outline-warning mt-2 mb-2">
-          Add To Card
+        {showViewButton(showViewProductButton)}
+        <button className="btn btn-outline-primary mt-2 mb-2">
+          Add To Cart
         </button>
       </div>
     </div>
