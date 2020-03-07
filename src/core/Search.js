@@ -53,10 +53,14 @@ const Search = () => {
 
   const searchedProducts = (results = []) => {
     return (
-      <div className="row">
-        {results.map((product, i) => (
-          <Card key={i} product={product} />
-        ))}
+      <div>
+        <div className="row">
+          {results.map((product, i) => (
+            <div className="col-4 mb-3">
+              <Card key={i} product={product} />
+            </div>
+          ))}
+        </div>
       </div>
     );
   };
