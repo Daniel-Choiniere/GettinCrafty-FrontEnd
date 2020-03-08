@@ -5,7 +5,11 @@ import moment from "moment";
 import { addItem } from "./cartHelpers";
 
 // takes in prop showViewProductButton from Single Product component to not show card buttons
-const Card = ({ product, showViewProductButton = true }) => {
+const Card = ({
+  product,
+  showViewProductButton = true,
+  showAddToCartButton = true
+}) => {
   const [redirect, setRedirect] = useState(false);
 
   const showViewButton = showViewProductButton => {
@@ -30,11 +34,16 @@ const Card = ({ product, showViewProductButton = true }) => {
     }
   };
 
-  const showAddToCartButton = () => {
+  const showAddToCart = showAddToCartButton => {
     return (
-      <button onClick={addToCart} className="btn btn-outline-primary mt-2 mb-2">
-        Add To Cart
-      </button>
+      showAddToCartButton && (
+        <button
+          onClick={addToCart}
+          className="btn btn-outline-primary mt-2 mb-2"
+        >
+          Add To Cart
+        </button>
+      )
     );
   };
 
@@ -63,7 +72,7 @@ const Card = ({ product, showViewProductButton = true }) => {
         {showStock(product.quantity)}
         <br />
         {showViewButton(showViewProductButton)}
-        {showAddToCartButton()}
+        {showAddToCart(showAddToCartButton)}
       </div>
     </div>
   );
