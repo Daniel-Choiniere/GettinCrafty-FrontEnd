@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import moment from "moment";
-import { addItem, updateItem } from "./cartHelpers";
+import { addItem, updateItem, removeItem } from "./cartHelpers";
 
 // takes in prop showViewProductButton from Single Product component to not show card buttons
 const Card = ({
   product,
   showViewProductButton = true,
   showAddToCartButton = true,
+  showRemoveProductButton = false,
   cartUpdate = false
 }) => {
   const [redirect, setRedirect] = useState(false);
@@ -44,6 +45,19 @@ const Card = ({
           className="btn btn-outline-primary mt-2 mb-2"
         >
           Add To Cart
+        </button>
+      )
+    );
+  };
+
+  const showRemoveButton = showRemoveProductButton => {
+    return (
+      showRemoveProductButton && (
+        <button
+          onClick={() => removeItem(product._id)}
+          className="btn btn-outline-danger mt-2 mb-2"
+        >
+          Remove From Cart
         </button>
       )
     );
@@ -102,6 +116,7 @@ const Card = ({
         <br />
         {showViewButton(showViewProductButton)}
         {showAddToCart(showAddToCartButton)}
+        {showRemoveButton(showRemoveProductButton)}
         {showCartUpdateOptions(cartUpdate)}
       </div>
     </div>
