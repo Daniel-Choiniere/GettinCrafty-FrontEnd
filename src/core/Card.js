@@ -10,7 +10,9 @@ const Card = ({
   showViewProductButton = true,
   showAddToCartButton = true,
   showRemoveProductButton = false,
-  cartUpdate = false
+  cartUpdate = false,
+  setRun = f => f,
+  run = undefined
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
