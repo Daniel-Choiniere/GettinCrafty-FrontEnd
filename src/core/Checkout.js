@@ -9,6 +9,7 @@ import { emptyCart } from "./cartHelpers";
 
 const Checkout = ({ products, setRun = f => f, run = undefined }) => {
   const [data, setData] = useState({
+    loading: false,
     success: false,
     clientToken: null,
     error: "",
@@ -51,6 +52,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
   };
 
   const buy = () => {
+    setData({ loading: true });
     // send nonce to your server
     // nonce is a unique value that is only used once
     let nonce;
@@ -77,7 +79,10 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
               });
             });
           })
-          .catch(error => console.log(error));
+          .catch(error => {
+            console.log(error);
+            setData({ loading: false });
+          });
       })
       .catch(error => {
         // console.log("dropin error", error);
@@ -101,10 +106,10 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 
           <DropIn
             options={{
-              authorization: data.clientToken
-              // paypal: {
-              //   flow: "vault"
-              // }
+              authorization: data.clientToken,
+              paypal: {
+                flow: "vault"
+              }
             }}
             onInstance={instance => (data.instance = instance)}
           />
@@ -134,9 +139,12 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     </div>
   );
 
+  const showLoading = loading => loading && <h2>Loading...</h2>;
+
   return (
     <div>
       <h2>Total: ${getTotal()}</h2>
+      {showLoading(data.loading)}
       {showSuccess(data.success)}
       {showError(data.error)}
       {showCheckout()}
