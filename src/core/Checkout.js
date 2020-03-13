@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 // import Layout from "./Layout";
-import { getBraintreeClientToken, processPayment } from "./apiCore";
+import {
+  getBraintreeClientToken,
+  processPayment,
+  createOrder
+} from "./apiCore";
 // import Card from "./Card";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
@@ -41,6 +45,10 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     }, 0);
   };
 
+  const handleAddress = event => {
+    setData({ ...data, address: event.target.value });
+  };
+
   const showCheckout = () => {
     return isAuthenticated() ? (
       <div>{showDropIn()}</div>
@@ -68,6 +76,15 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 
         processPayment(userId, token, paymentData)
           .then(response => {
+            const createOrderData = {
+              products: products,
+              transaction_id: response.transaction.id,
+              amount: response.transaction.amount,
+              address: data.address
+            };
+
+            createOrder(userId, token, createOrderData);
+
             setData({ ...data, success: response.success });
             emptyCart(() => {
               // update the parent state so state is updated and cart is emptied
@@ -94,15 +111,15 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
         <div>
-          {/* <div className="gorm-group mb-3">
+          <div className="gorm-group mb-3">
             <label className="text-muted">Delivery address:</label>
             <textarea
-              // onChange={handleAddress}
+              onChange={handleAddress}
               className="form-control"
               value={data.address}
               placeholder="Type your delivery address here..."
             />
-          </div> */}
+          </div>
 
           <DropIn
             options={{
