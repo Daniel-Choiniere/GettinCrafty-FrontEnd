@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import Layout from "./Layout";
-import { getBraintreeClientToken } from "./apiCore";
+import { getBraintreeClientToken, processPayment } from "./apiCore";
 // import Card from "./Card";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ const Checkout = ({ products }) => {
       if (data.error) {
         setData({ ...data, error: data.error });
       } else {
-        setData({ ...data, clientToken: data.clientToken });
+        setData({ clientToken: data.clientToken });
       }
     });
   };
@@ -58,11 +58,18 @@ const Checkout = ({ products }) => {
       .then(data => {
         nonce = data.nonce;
         // once you have nonce (card type, card number) send nonce as "paymentMethodNonce". Also the total to be charged
-        console.log(
-          "send nonce and totoal to process: ",
-          nonce,
-          getTotal(products)
-        );
+        const paymentData = {
+          paymentMethodNonce: nonce,
+          amount: getTotal(products)
+        };
+
+        processPayment(userId, token, paymentData)
+          .then(response => {
+            setData({ ...data, success: response.success });
+            // empty cart
+            // create order
+          })
+          .catch(error => console.log(error));
       })
       .catch(error => {
         // console.log("dropin error", error);
@@ -110,9 +117,19 @@ const Checkout = ({ products }) => {
     </div>
   );
 
+  const showSuccess = success => (
+    <div
+      className="alert alert-info"
+      style={{ display: success ? "" : "none" }}
+    >
+      Thank You! Payment was succesful. See you soon!
+    </div>
+  );
+
   return (
     <div>
       <h2>Total: ${getTotal()}</h2>
+      {showSuccess(data.success)}
       {showError(data.error)}
       {showCheckout()}
     </div>
