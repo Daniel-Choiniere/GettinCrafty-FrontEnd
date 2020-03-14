@@ -12,7 +12,7 @@ import AddCategory from "./admin/AddCategory";
 import AddProduct from "./admin/AddProduct";
 import Shop from "./core/Shop";
 import Product from "./core/Product";
-import Orders from "./admin/orders";
+import Orders from "./admin/Orders";
 
 const Routes = () => {
   return (
