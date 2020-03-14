@@ -66,6 +66,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     // send nonce to your server
     // nonce is a unique value that is only used once
     let nonce;
+    // eslint-disable-next-line no-unused-vars
     let getNonce = data.instance
       .requestPaymentMethod()
       .then(data => {
