@@ -6,9 +6,9 @@ import { read, update, updateUser } from "./apiUser";
 
 const Profile = props => {
   const [values, setValues] = useState({
-    name: " ",
-    email: " ",
-    password: " ",
+    name: "",
+    email: "",
+    password: "",
     error: false,
     success: false
   });
@@ -44,7 +44,8 @@ const Profile = props => {
     update(props.match.params.userId, token, { name, email, password }).then(
       data => {
         if (data.error) {
-          console.log(data.error);
+          // console.log(data.error);
+          alert(data.error);
         } else {
           updateUser(data, () => {
             setValues({
@@ -61,7 +62,7 @@ const Profile = props => {
 
   const redirectUser = success => {
     if (success) {
-      return <Redirect to="/cart" />;
+      return <Redirect to="/user/dashboard" />;
     }
   };
 
