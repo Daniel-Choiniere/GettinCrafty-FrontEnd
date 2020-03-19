@@ -101,7 +101,7 @@ const Card = ({
   };
 
   return (
-    <div className="card">
+    <div className="card text-center border-0">
       <div className="card-header name">{product.name}</div>
       <div className="card-body">
         {shouldRedirect(redirect)}

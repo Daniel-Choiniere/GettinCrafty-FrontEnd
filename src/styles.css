@@ -22,11 +22,11 @@
   * single product page - product name
   */
 
-.name {
-  background: indigo;
+/* .name {
+  background: #79c11b;
   color: #fff;
   font-weight: bold;
-}
+} */
 
 /* black shade form 10-1 */
 .black-10 {
@@ -71,13 +71,14 @@
   */
 
 .jumbotron {
-  height: 180px;
+  position: relative;
+  background: #000
+    url("https://cdn.pixabay.com/photo/2017/03/04/22/24/cactus-2117102__340.jpg")
+    center center;
+  width: %;
+  height: 100%;
+  background-size: cover;
   color: #fff;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
 }
 
 @-webkit-keyframes Gradient {
