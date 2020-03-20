@@ -14,6 +14,7 @@ const Profile = props => {
   });
 
   const { token } = isAuthenticated();
+  // eslint-disable-next-line no-unused-vars
   const { name, email, password, error, success } = values;
 
   const init = userId => {

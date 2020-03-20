@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { getProduct, getCatagories, updateProduct } from "./apiAdmin";
 import { Redirect } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 const UpdateProduct = props => {
   const [values, setValues] = useState({
