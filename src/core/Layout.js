@@ -1,7 +1,6 @@
 import React from "react";
 import Menu from "./Menu";
 import "../styles.css";
-import Search from "./Search";
 
 const Layout = ({
   title = "Title",
@@ -17,9 +16,12 @@ const Layout = ({
           <div class="container"></div>
         </div>
       </div>
-      <h2>{title}</h2>
-      <p className="lead">{description}</p>
-      <Search />
+      <h1 style={{ fontSize: "140px" }} className="homeTitle">
+        {title}
+      </h1>
+      <p style={{ fontSize: "50px" }} className="lead homeTitle">
+        {description}
+      </p>
     </div>
 
     <div className={className}>{children}</div>

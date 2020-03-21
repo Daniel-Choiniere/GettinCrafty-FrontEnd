@@ -73,7 +73,7 @@
 .jumbotron {
   position: relative;
   background: #000
-    url("https://cdn.pixabay.com/photo/2017/03/04/22/24/cactus-2117102__340.jpg")
+    url("https://cdn.pixabay.com/photo/2017/05/23/10/26/plant-2336779__340.jpg")
     center center;
   width: %;
   height: 100%;
@@ -115,4 +115,13 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+.homeTitle {
+  font-weight: bolder;
+}
+
+.nav-image {
+  width: 50px;
+  height: 50px;
 }

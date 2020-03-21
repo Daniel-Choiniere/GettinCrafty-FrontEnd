@@ -42,7 +42,7 @@ const Cart = () => {
 
   return (
     <Layout
-      title="Shopping Cart"
+      title="Cart"
       description="Manage your cart items"
       className="container-fluid"
     >

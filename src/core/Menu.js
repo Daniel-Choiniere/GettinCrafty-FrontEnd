@@ -14,13 +14,23 @@ const isActive = (history, path) => {
 const Menu = ({ history }) => (
   <div>
     <ul className="nav navbar-dark bg-dark">
-      <li className="nav-item">
+      <li className="navbar-brand">
+        <Link className="nav-link" style={isActive(history, "/")} to="/">
+          <img
+            className="d-inline-block align-top nav-image"
+            alt="crafts"
+            src={require("./images/gettincrafty_logo.jpg")}
+          />
+        </Link>
+      </li>
+
+      <li className="nav-item navbar-text">
         <Link className="nav-link" style={isActive(history, "/")} to="/">
           Home
         </Link>
       </li>
 
-      <li className="nav-item">
+      <li className="nav-item navbar-text">
         <Link
           className="nav-link"
           style={isActive(history, "/shop")}
@@ -30,7 +40,7 @@ const Menu = ({ history }) => (
         </Link>
       </li>
 
-      <li className="nav-item">
+      <li className="nav-item navbar-text">
         <Link
           className="nav-link"
           style={isActive(history, "/cart")}
@@ -44,7 +54,7 @@ const Menu = ({ history }) => (
       </li>
 
       {isAuthenticated() && isAuthenticated().user.role === 0 && (
-        <li className="nav-item">
+        <li className="nav-item navbar-text">
           <Link
             className="nav-link"
             style={isActive(history, "/user/dashboard")}
@@ -56,7 +66,7 @@ const Menu = ({ history }) => (
       )}
 
       {isAuthenticated() && isAuthenticated().user.role === 1 && (
-        <li className="nav-item">
+        <li className="nav-item navbar-text">
           <Link
             className="nav-link"
             style={isActive(history, "/admin/dashboard")}
@@ -69,7 +79,7 @@ const Menu = ({ history }) => (
 
       {!isAuthenticated() && (
         <Fragment>
-          <li className="nav-item">
+          <li className="nav-item navbar-text">
             <Link
               className="nav-link"
               style={isActive(history, "/signin")}
@@ -79,7 +89,7 @@ const Menu = ({ history }) => (
             </Link>
           </li>
 
-          <li className="nav-item">
+          <li className="nav-item navbar-text">
             <Link
               className="nav-link"
               style={isActive(history, "/signup")}
@@ -92,7 +102,7 @@ const Menu = ({ history }) => (
       )}
 
       {isAuthenticated() && (
-        <li className="nav-item">
+        <li className="nav-item navbar-text">
           <span
             className="nav-link"
             style={{ cursor: "pointer", color: "#ffffff" }}

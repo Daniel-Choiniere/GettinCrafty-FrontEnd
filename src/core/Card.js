@@ -102,18 +102,18 @@ const Card = ({
 
   return (
     <div className="card text-center border-0">
-      <div className="card-header name">{product.name}</div>
+      <h3>{product.name}</h3>
       <div className="card-body">
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
         <p className="lead mt-2">{product.description.substring(0, 100)}</p>
-        <p className="black-10">${product.price}</p>
-        <p className="black-9">
+        <p>${product.price}</p>
+        {/* <p className="black-9">
           Category: {product.category && product.category.name}
         </p>
         <p className="black-8">
           Product added to shop {moment(product.createdAt).fromNow()}
-        </p>
+        </p> */}
         {showStock(product.quantity)}
         <br />
         {showViewButton(showViewProductButton)}
