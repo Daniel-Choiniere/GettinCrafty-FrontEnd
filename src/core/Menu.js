@@ -12,7 +12,7 @@ const isActive = (history, path) => {
 };
 
 const Menu = ({ history }) => (
-  <div>
+  <div className="sticky-top">
     <nav className="nav" style={{ backgroundColor: "#688d87" }}>
       <li className="navbar-brand">
         <Link className="nav-link" to="/">
