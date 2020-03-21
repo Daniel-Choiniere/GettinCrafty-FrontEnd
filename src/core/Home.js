@@ -41,48 +41,64 @@ const Home = () => {
       description="Fun, customizable clothing and gifts!"
       className="container-fluid"
     >
-      <div className="card-group">
-        <div className="card border-0">
-          <img alt="crafts" src={require("./images/hanging_hearts.webp")} />
-        </div>
-
-        <div className="card border-0">
-          <img alt="crafts" src={require("./images/white_flower.webp")} />
-        </div>
-
-        <div className="card-border-0">
-          <img alt="crafts" src={require("./images/cactus.webp")} />
-        </div>
-      </div>
-
+      <hr />
       <div>
         <img
+          class="responsive"
           alt="crafts"
           src={require("./images/gettincrafty_logo.jpg")}
           style={{ display: "block", margin: "auto" }}
         />
       </div>
-
+      <hr />
       <Search />
 
       <br />
-      <h2 className="mb-4 card-group-title">Best Sellers</h2>
+      <h1 className="mb-4 card-group-title home-product-title">Best Sellers</h1>
       <div className="row">
         {productsBySell.map((product, i) => (
-          <div key={i} className="col-4 mb-3">
+          <div key={i} className="col-2 mb-4">
             <Card product={product} />
           </div>
         ))}
       </div>
 
-      <h2 className="mb-4 card-group-title">New Arrivals</h2>
+      <h1 className="mb-4 card-group-title home-product-title">New Arrivals</h1>
       <div className="row">
         {productsByArrival.map((product, i) => (
-          <div key={i} className="col-4 mb-3">
+          <div key={i} className="col-2 mb-4">
             <Card product={product} />
           </div>
         ))}
       </div>
+      <hr />
+      <div className="card-group">
+        <div className="card border-0">
+          <img
+            className="responsive"
+            alt="crafts"
+            src={require("./images/hanging_hearts.webp")}
+          />
+        </div>
+
+        <div className="card border-0">
+          <img
+            className="responsive"
+            alt="crafts"
+            src={require("./images/white_flower.webp")}
+          />
+        </div>
+
+        <div className="card-border-0">
+          <img
+            className="responsive"
+            alt="crafts"
+            src={require("./images/cactus.webp")}
+          />
+        </div>
+      </div>
+      <br />
+      <br />
     </Layout>
   );
 };

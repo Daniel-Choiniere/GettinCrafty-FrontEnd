@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
-import moment from "moment";
+// import moment from "moment";
 import { addItem, updateItem, removeItem } from "./cartHelpers";
 
 // takes in prop showViewProductButton from Single Product component to not show card buttons
@@ -21,7 +21,7 @@ const Card = ({
     return (
       showViewProductButton && (
         <Link to={`/product/${product._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mt-2 mb-2">
+          <button className="btn btn-outline-success mt-2 mb-2">
             View Product
           </button>
         </Link>
@@ -44,7 +44,7 @@ const Card = ({
       showAddToCartButton && (
         <button
           onClick={addToCart}
-          className="btn btn-outline-primary mt-2 mb-2"
+          className="btn btn-outline-success mt-2 mb-2"
         >
           Add To Cart
         </button>
@@ -102,18 +102,13 @@ const Card = ({
 
   return (
     <div className="card text-center border-0">
-      <h3>{product.name}</h3>
+      <h4 className="card-title">{product.name}</h4>
       <div className="card-body">
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
         <p className="lead mt-2">{product.description.substring(0, 100)}</p>
         <p>${product.price}</p>
-        {/* <p className="black-9">
-          Category: {product.category && product.category.name}
-        </p>
-        <p className="black-8">
-          Product added to shop {moment(product.createdAt).fromNow()}
-        </p> */}
+
         {showStock(product.quantity)}
         <br />
         {showViewButton(showViewProductButton)}

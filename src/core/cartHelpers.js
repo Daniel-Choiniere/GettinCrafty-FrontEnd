@@ -67,7 +67,6 @@ export const removeItem = productId => {
     if (localStorage.getItem("cart")) {
       cart = JSON.parse(localStorage.getItem("cart"));
     }
-
     // eslint-disable-next-line array-callback-return
     cart.map((product, i) => {
       if (product._id === productId) {

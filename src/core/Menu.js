@@ -13,9 +13,9 @@ const isActive = (history, path) => {
 
 const Menu = ({ history }) => (
   <div>
-    <ul className="nav navbar-dark bg-dark">
+    <nav className="nav" style={{ backgroundColor: "#688d87" }}>
       <li className="navbar-brand">
-        <Link className="nav-link" style={isActive(history, "/")} to="/">
+        <Link className="nav-link" to="/">
           <img
             className="d-inline-block align-top nav-image"
             alt="crafts"
@@ -116,7 +116,7 @@ const Menu = ({ history }) => (
           </span>
         </li>
       )}
-    </ul>
+    </nav>
   </div>
 );
 
