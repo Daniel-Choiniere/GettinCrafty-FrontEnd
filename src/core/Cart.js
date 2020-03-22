@@ -17,10 +17,12 @@ const Cart = () => {
   const showItems = items => {
     return (
       <div>
-        <h3>
+        <h3 className="mb-4 dashboard-header">
           <Link to="/shop">Continue Shopping</Link>
         </h3>
-        <h2>You have {`${items.length}`} item(s) in your cart!</h2>
+        <h2 className="dashboard-header">
+          You have {`${items.length}`} item(s) in your cart!
+        </h2>
         <hr />
         {items.map((product, i) => (
           <Card
@@ -38,15 +40,11 @@ const Cart = () => {
   };
 
   const noItemsNessage = () => (
-    <h2>
+    <h2 className="dashboard-header">
       Your shopping cart is empty. <br />{" "}
       <Link to="/shop">Continue Shopping</Link>
     </h2>
   );
-
-  // const refreshPage = () => {
-  //   window.location.reload();
-  // }
 
   return (
     <Layout
@@ -56,21 +54,13 @@ const Cart = () => {
     >
       <Search />
 
-      {/* <button
-        onClick={refreshPage()}
-        className="btn btn-outline-danger mt-2 mb-2"
-      >
-        {" "}
-        Update Cart
-      </button> */}
-
       <div className="row">
         <div className="col-6">
           {items.length > 0 ? showItems(items) : noItemsNessage()}
         </div>
 
         <div className="col-6">
-          <h2 className="mb-4">Checkout</h2>
+          <h2 className="mb-4 dashboard-header">Checkout</h2>
           <hr />
           <Checkout products={items} setRun={setRun} run={run} />
         </div>
