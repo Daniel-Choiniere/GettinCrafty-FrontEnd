@@ -56,7 +56,10 @@ const Card = ({
     return (
       showRemoveProductButton && (
         <button
-          onClick={() => removeItem(product._id)}
+          onClick={() => {
+            removeItem(product._id);
+            setRun(!run);
+          }}
           className="btn btn-outline-danger mt-2 mb-2"
         >
           Remove From Cart

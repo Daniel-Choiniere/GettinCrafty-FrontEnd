@@ -44,6 +44,10 @@ const Cart = () => {
     </h2>
   );
 
+  // const refreshPage = () => {
+  //   window.location.reload();
+  // }
+
   return (
     <Layout
       title="Cart"
@@ -51,6 +55,15 @@ const Cart = () => {
       className="container-fluid"
     >
       <Search />
+
+      {/* <button
+        onClick={refreshPage()}
+        className="btn btn-outline-danger mt-2 mb-2"
+      >
+        {" "}
+        Update Cart
+      </button> */}
+
       <div className="row">
         <div className="col-6">
           {items.length > 0 ? showItems(items) : noItemsNessage()}

@@ -44,7 +44,7 @@ const Home = () => {
       <hr />
       <div>
         <img
-          class="responsive"
+          className="responsive"
           alt="crafts"
           src={require("./images/gettincrafty_logo.jpg")}
           style={{ display: "block", margin: "auto" }}
