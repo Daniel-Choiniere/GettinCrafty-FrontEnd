@@ -1,6 +1,5 @@
 import React from "react";
 import Menu from "./Menu";
-import Footer from "./Footer";
 import "../styles.css";
 
 const Layout = ({
@@ -12,9 +11,9 @@ const Layout = ({
   <div>
     <Menu />
     <div className="jumbotron">
-      <div class="container">
-        <div class="jumbotron-cover-image">
-          <div class="container"></div>
+      <div className="container">
+        <div className="jumbotron-cover-image">
+          <div className="container"></div>
         </div>
       </div>
       <h1 style={{ fontSize: "100px" }} className="homeTitle">
