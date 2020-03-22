@@ -65,6 +65,21 @@ const Cart = () => {
           <Checkout products={items} setRun={setRun} run={run} />
         </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </Layout>
   );
 };
