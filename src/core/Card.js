@@ -78,7 +78,7 @@ const Card = ({
 
   const handleChange = productId => event => {
     setRun(!run);
-    setCount(event.target.value < 1 ? 1 : event.target.value);
+    setCount(event.target.value < 1 ? 0 : event.target.value);
     if (event.target.value >= 1) {
       updateItem(productId, event.target.value);
     }
