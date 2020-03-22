@@ -73,3 +73,8 @@
 .card-title {
   font-family: Courier;
 }
+
+.dashboard-header {
+  font-family: Verdana;
+  font-weight: bold;
+}
