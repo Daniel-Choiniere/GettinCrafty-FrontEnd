@@ -17,7 +17,7 @@ const path = require("path");
 const app = express();
 
 mongoose
-  .connect(process.env.MONGODB_URI || process.env.DATABASE, {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
