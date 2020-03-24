@@ -1,0 +1,13 @@
+{
+  "DATABASE": "mongodb+srv://Dan:iLOVEcareerdevs@gettincraftyapi-bulea.mongodb.net/test?retryWrites=true&w=majority",
+
+  "PORT": 8000,
+
+  "JWT_SECRET": "djffkljfljk4",
+
+  "BRAINTREE_MERCHANT_ID": "yb6kvdksx5qfss6n",
+
+  "BRAINTREE_PUBLIC_KEY": "cg7p9kn87n5w5gt8",
+
+  "BRAINTREE_PRIVATE_KEY": "613904e24b2b1daf8c47cb6b18f16bd9"
+}
