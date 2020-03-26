@@ -13,18 +13,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log("DB Connected"));
-
-mongoose.connection.on("error", err => {
-  console.log(`DB Connection error: ${err.message}`);
-});
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
